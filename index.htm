@@ -12,6 +12,9 @@
       margin: 0;
       padding: 0;
     }
+img {
+  width: 200px;
+}
 
     #map {
       position: absolute;
@@ -25,7 +28,7 @@
 <body>
   <div id="map"></div>
   <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZG9tbGV0IiwiYSI6ImNsanp3a24xeDAxMjMzZGxpeDY3MWZpMXkifQ.4TIVDbum8xmIdzokCod3Ww';
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYXJpYW5hbnVuZXoxMjMtIiwiYSI6ImNtZzhocXVwazA3a2sybG9jd3pmZjcyeWcifQ.I40L09tmPsOCG7L7rMWjIw';
     const map = new mapboxgl.Map({
       container: 'map',
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
@@ -49,6 +52,7 @@
               "properties": {
                 'name': "My first time volunteering at a library",
                 'description': "I volunteered here",
+                'image': "img/melrose.png"
               }
             },
             {
@@ -60,6 +64,7 @@
               "properties": {
                 'name': "guadalajara airport",
                 'description': "when I travel to mexico,this is the airport i go to",
+                'image': "img/gdlairport.png"
               }
             },
             {
@@ -71,6 +76,7 @@
               "properties": {
                 'name': "college track",
                 'description': "my year long program",
+                'image': "img/images.png",
               }
             }
           ]
@@ -97,13 +103,15 @@
         const coordinates = e.feature.geometry.coordinates.slice();
         const name = e.feature.properties.name;
         const description = e.feature.properties.description;
+        const image = e.feature.properties.image;
 
         new mapboxgl.Popup()
           .setLngLat(coordinates)
-          .setHTML("<br><strong>" + name + "</strong><br/>" + description)
+          .setHTML("<img src='" + image + "'><br><strong>" + name + "</strong><br/>" + description)
           .addTo(map);
+          
       }
-    });
+    })
 
   </script>
 
